@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 
         vector<string> pictures = pfr->getPicturesFromContent();
 
-        PictureResizer* pr = new PictureResizer(pictures, newDirectory);
+        PictureResizer* pr = new PictureResizer(pictures, createNewDirectory);
         pr->setFolder(nameFolder);
         pr->resizePictures();
 
