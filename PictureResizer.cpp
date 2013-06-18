@@ -1,4 +1,5 @@
 #include "PictureResizer.h"
+#include "Utils.h"
 #include <string>
 #include <iostream>
 
@@ -21,15 +22,29 @@ void PictureResizer::setFolder(string _folderName)
 void PictureResizer::resizePicture(string namePicture)
 {
     string newPictureName = namePicture + PICTURE_SIZE;
-    Magick::Image picture(namePicture);
+    string folderDest = "";
+    Magick::Image picture(folderName+namePicture);
     Magick::Image result = picture;
     
     result.resize(PICTURE_SIZE);
-    result.write(newPictureName);
-    
+
+    if (newDirectoryNeeded)
+    {
+    	folderDest = "resized"+folderName;
+    	Utils *utils = new Utils();
+    	utils->createFolder(folderDest);
+    }
+    else
+    {	
+    	folderDest = folderName;
+    }
+    result.write(folderDest+newPictureName);    
 }
 
 void PictureResizer::resizePictures()
 {
-    for(std::vector<string>::iterator it = toBeResized.begin(); it != toBeResized.end(); ++it) resizePicture(folderName + *it);
+    for(std::vector<string>::iterator it = toBeResized.begin(); it != toBeResized.end(); ++it) 
+    {
+    	resizePicture(*it);
+    }
 }
