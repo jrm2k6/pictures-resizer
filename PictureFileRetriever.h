@@ -20,7 +20,6 @@ class PictureFileRetriever
         void getContentFolder(string folderName);
         vector<string> getPicturesFromContent();
         void printContentFolder();
-        string toLowerCase(string word);
 };
 
 #endif	

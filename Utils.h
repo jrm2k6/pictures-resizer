@@ -10,6 +10,7 @@ class Utils
         public:
             Utils();
             string getCurrentWorkingDirectory();
+            string toLowerCase(string word);
 };
 
 #endif	/* UTILS_H */

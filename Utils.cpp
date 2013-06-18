@@ -22,3 +22,14 @@ string Utils::getCurrentWorkingDirectory()
     return currentPathBuffer;
 }
 
+string Utils::toLowerCase(string word)
+{
+    const int length = word.length();
+    for(int i=0; i < length; ++i)
+    {
+	word[i] = tolower(word[i]);
+    }
+    
+    return word;
+}
+

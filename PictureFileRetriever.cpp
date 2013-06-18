@@ -1,4 +1,5 @@
 #include "PictureFileRetriever.h"
+#include "Utils.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -10,15 +11,13 @@
 
 using namespace std;
 
-
-
 PictureFileRetriever::PictureFileRetriever() 
 {
 }
 
 string PictureFileRetriever::EXTENSIONS[] = {"jpg", "png", "jpeg"};
 
-void PictureFileRetriever::getContentFolder(std::string folderName)
+void PictureFileRetriever::getContentFolder(string folderName)
 {
     DIR *dp;
     struct dirent *dirp;
@@ -56,25 +55,15 @@ void PictureFileRetriever::printContentFolder()
     }
 }
 
-string PictureFileRetriever::toLowerCase(string word)
-{
-    const int length = word.length();
-    for(int i=0; i < length; ++i)
-    {
-	word[i] = tolower(word[i]);
-    }
-    
-    return word;
-}
-
 bool PictureFileRetriever::isAPicture(string fileName)
 {
     int foundDelimiter;
+    Utils* utils = new Utils();
     
     int lengthArray = sizeof(EXTENSIONS)/sizeof(string);
     for (int i=0; i < lengthArray; i++)
     {
-        foundDelimiter = toLowerCase(fileName).find(EXTENSIONS[i]);
+        foundDelimiter = utils->toLowerCase(fileName).find(EXTENSIONS[i]);
         if (foundDelimiter != -1)
         {
             return true;
