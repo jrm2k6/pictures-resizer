@@ -10,6 +10,7 @@ class Utils
         public:
             Utils();
             string getCurrentWorkingDirectory();
+            void createFolder(string name);
             string toLowerCase(string word);
 };
 

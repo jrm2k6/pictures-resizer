@@ -31,5 +31,5 @@ void PictureResizer::resizePicture(string namePicture)
 
 void PictureResizer::resizePictures()
 {
-    for(std::vector<string>::iterator it = toBeResized.begin(); it != toBeResized.end(); ++it) resizePicture( folderName + *it);
+    for(std::vector<string>::iterator it = toBeResized.begin(); it != toBeResized.end(); ++it) resizePicture(folderName + *it);
 }

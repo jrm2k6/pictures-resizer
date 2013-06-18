@@ -1,6 +1,8 @@
 #include "Utils.h"
 #include <string>
 #include <cerrno>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define GetCurrentDir getcwd
@@ -33,3 +35,7 @@ string Utils::toLowerCase(string word)
     return word;
 }
 
+void Utils::createFolder(string name)
+{
+	mkdir(name.c_str(), 0777);
+}
