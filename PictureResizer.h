@@ -17,8 +17,9 @@ class PictureResizer
             vector<string> toBeResized;
             vector<string> resizedPictures;
             string folderName;
+            bool newDirectoryNeeded;
         public:
-            PictureResizer(vector<string> _toBeResized);
+            PictureResizer(vector<string> _toBeResized, bool newDirectoryNeeded);
             void setFolder(string _folderName);
             void resizePicture(string namePicture);
             void resizePictures();

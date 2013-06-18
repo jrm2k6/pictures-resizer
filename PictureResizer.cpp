@@ -7,9 +7,10 @@ using namespace Magick;
 
 string PictureResizer::PICTURE_SIZE  = "800x600";
 
-PictureResizer::PictureResizer(vector<string> _toBeResized) 
+PictureResizer::PictureResizer(vector<string> _toBeResized, bool _newDirectoryNeeded) 
 {
     toBeResized = _toBeResized;
+    newDirectoryNeeded = _newDirectoryNeeded;
 }
 
 void PictureResizer::setFolder(string _folderName)
