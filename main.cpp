@@ -25,12 +25,19 @@ void showPromptCreateNewFolder()
     cout << "Put resized pictures in new directory? yes/no?" << endl;
 }
 
+bool needNewDirectory(string newDirectory, Utils utils)
+{
+    string positive = "yes";
+
+    return positive.compare(utils.toLowerCase(newDirectory)) == 0;
+}
+
 int main(int argc, char** argv) {
         InitializeMagick(*argv);
         Utils* utils = new Utils();
 
-        char nameFolder[1024];
-        char newDirectory[1024];
+        char nameFolder[1024], newDirectory[1024];
+        bool createNewDirectory;
 
         showPromptOriginFolder();
         
@@ -39,8 +46,8 @@ int main(int argc, char** argv) {
         showPromptCreateNewFolder();
         
         cin >> newDirectory;
-        
-        
+
+        createNewDirectory = needNewDirectory(newDirectory, *utils);
 
         PictureFileRetriever* pfr = new PictureFileRetriever();
 
