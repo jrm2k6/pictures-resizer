@@ -17,7 +17,8 @@ void showPromptOriginFolder()
     cout << "===============================" << endl;
     cout << "===============================" << endl;
     cout << "     ======================    " << endl;
-    cout << "Enter the folder containing the pictures to resize: (relatively to your current working directory" << endl;
+    cout << "Enter the folder containing the pictures to resize: (relatively to your current working directory)" << endl;
+    cout << "DO NOT FORGET THE TRAILING /" << endl;
 }
 
 void showPromptCreateNewFolder()
