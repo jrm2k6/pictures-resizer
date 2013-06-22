@@ -6,6 +6,7 @@
 #include "PictureFileRetriever.h"
 #include "PictureResizer.h"
 #include "Utils.h"
+#include <gtk/gtk.h>
 
 using namespace std;
 using namespace Magick;
@@ -33,7 +34,8 @@ bool needNewDirectory(string newDirectory, Utils utils)
     return positive.compare(utils.toLowerCase(newDirectory)) == 0;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
         InitializeMagick(*argv);
         Utils* utils = new Utils();
 
@@ -62,6 +64,15 @@ int main(int argc, char** argv) {
         PictureResizer* pr = new PictureResizer(pictures, createNewDirectory);
         pr->setFolder(nameFolder);
         pr->resizePictures();
+
+         GtkWidget *window;
+
+        gtk_init(&argc, &argv);
+
+        window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        gtk_widget_show(window);
+
+        gtk_main();
 
         return 0;
 }
