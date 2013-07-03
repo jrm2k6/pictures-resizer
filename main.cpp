@@ -34,45 +34,63 @@ bool needNewDirectory(string newDirectory, Utils utils)
     return positive.compare(utils.toLowerCase(newDirectory)) == 0;
 }
 
+void createAndShowUI(int _argc, char** _argv)
+{
+   GtkWidget *window;
+   GtkWidget *button;
+   GtkWidget *fixed;
+
+   gtk_init(&_argc, &_argv);
+
+   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+   gtk_window_set_title(GTK_WINDOW(window), "Picture resizer v 0.1");
+   gtk_window_set_default_size(GTK_WINDOW(window), 230, 150);
+   gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+
+   fixed = gtk_fixed_new();
+   gtk_container_add(GTK_CONTAINER(window), fixed);
+   button = gtk_button_new_with_label("Quit");
+
+   gtk_fixed_put(GTK_FIXED(fixed), button, 50, 50);
+   gtk_widget_set_size_request(button, 80, 35);
+   
+   gtk_widget_show_all(window);
+
+   gtk_main(); 
+}
+
 int main(int argc, char** argv) 
 {
         InitializeMagick(*argv);
-        Utils* utils = new Utils();
+        // Utils* utils = new Utils();
 
-        char nameFolder[1024], newDirectory[1024];
-        bool createNewDirectory;
+        // char nameFolder[1024], newDirectory[1024];
+        // bool createNewDirectory;
 
-        showPromptOriginFolder();
+        // showPromptOriginFolder();
         
-        cin >> nameFolder;
+        // cin >> nameFolder;
         
-        showPromptCreateNewFolder();
+        // showPromptCreateNewFolder();
         
-        cin >> newDirectory;
+        // cin >> newDirectory;
 
-        createNewDirectory = needNewDirectory(newDirectory, *utils);
+        // createNewDirectory = needNewDirectory(newDirectory, *utils);
 
-        PictureFileRetriever* pfr = new PictureFileRetriever();
+        // PictureFileRetriever* pfr = new PictureFileRetriever();
 
-        string name =  utils->getCurrentWorkingDirectory();
+        // string name =  utils->getCurrentWorkingDirectory();
 
-        pfr->getContentFolder(nameFolder);
-        pfr->printContentFolder();
+        // pfr->getContentFolder(nameFolder);
+        // pfr->printContentFolder();
 
-        vector<string> pictures = pfr->getPicturesFromContent();
+        // vector<string> pictures = pfr->getPicturesFromContent();
 
-        PictureResizer* pr = new PictureResizer(pictures, createNewDirectory);
-        pr->setFolder(nameFolder);
-        pr->resizePictures();
+        // PictureResizer* pr = new PictureResizer(pictures, createNewDirectory);
+        // pr->setFolder(nameFolder);
+        // pr->resizePictures();
 
-         GtkWidget *window;
-
-        gtk_init(&argc, &argv);
-
-        window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-        gtk_widget_show(window);
-
-        gtk_main();
+        createAndShowUI(argc, argv);
 
         return 0;
 }
