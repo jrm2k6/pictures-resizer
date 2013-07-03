@@ -6,12 +6,13 @@ PATH_IMAGE_MAGICK_HEADER=-I/opt/ImageMagick/include/ImageMagick-6/
 PATH_LIB_IMAGE_MAGICK=-L/opt/ImageMagick/lib
 PATH_IMAGE_MAGICK_DYLIB=-lMagick++-6.Q16
 GTK_INCLUDE=`pkg-config --libs --cflags gtk+-2.0`
+NO_DEPRECATED_CONVERSION=-Wno-write-strings
 
 #all: 
 	g++ main.cpp PictureResizer.cpp PictureFileRetriever.cpp Utils.cpp -o picture-resizer -L/opt/ImageMagick/lib -I/opt/ImageMagick/include/ImageMagick-6/ -lMagick++-6.Q16 -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=0  `pkg-config --libs --cflags gtk+-2.0`
 all:  picture-resizer
 
-picture-resizer: main.o PictureResizer.o PictureFileRetriever.o Utils.o
+picture-resizer: main.o PictureResizer.o PictureFileRetriever.o prwindow.o Utils.o
 	@$(CC) main.o PictureResizer.o PictureFileRetriever.o Utils.o $(PATH_IMAGE_MAGICK_DYLIB) $(PATH_LIB_IMAGE_MAGICK) $(PATH_IMAGE_MAGICK_HEADER) $(WARNING_MAGIC_CORE_QUANTUM) $(WARNING_MAGIC_HDRI) $(GTK_INCLUDE)
 
 
@@ -26,6 +27,8 @@ PictureResizer.o: PictureResizer.cpp
 PictureFileRetriever.o: PictureFileRetriever.cpp
 	@$(CC) $(CFLAGS) PictureFileRetriever.cpp $(PATH_IMAGE_MAGICK_DYLIB) $(PATH_LIB_IMAGE_MAGICK) $(PATH_IMAGE_MAGICK_HEADER) $(WARNING_MAGIC_CORE_QUANTUM) $(WARNING_MAGIC_HDRI) $(GTK_INCLUDE)
 
+prwindow.o: prwindow.cpp
+	@$(CC) $(CFLAGS) prwindow.cpp $(GTK_INCLUDE) $(NO_DEPRECATED_CONVERSION)
 
 Utils.o: Utils.cpp
 	@$(CC) $(CFLAGS) Utils.cpp $(PATH_IMAGE_MAGICK_DYLIB) $(PATH_LIB_IMAGE_MAGICK) $(PATH_IMAGE_MAGICK_HEADER) $(WARNING_MAGIC_CORE_QUANTUM) $(WARNING_MAGIC_HDRI) $(GTK_INCLUDE)
