@@ -7,7 +7,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#define PR_WINDOW(obj)   GTK_CHECK_CAST (obj, prWindow_get_type (), PrWindow)
+#define PR_WINDOW(obj)   GTK_CHECK_CAST (obj, prWindow_get_type (), PRWindow)
 #define PR_WINDOW_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, prWindow_get_type (), PRWindowClass)
 #define IS_PRWINDOW(obj)       GTK_CHECK_TYPE (obj, prWindow_get_type ())
 
@@ -27,8 +27,8 @@ struct _PRWindowClass
   GtkVBoxClass parent_class;
 };
 
-GtkType          prWindow_get_type        (void);
-GtkWidget*     prWindow_new             (void);
+GtkType prWindow_get_type(void);
+GtkWidget* prWindow_new(void);
 
 #ifdef __cplusplus
 }
